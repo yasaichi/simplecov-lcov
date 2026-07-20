@@ -50,7 +50,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency(%q<rdoc>.freeze, [">= 0"])
   s.add_development_dependency(%q<bundler>.freeze, [">= 0"])
   s.add_development_dependency(%q<rake>.freeze, [">= 0"])
-  s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.18"])
+  s.add_development_dependency(%q<simplecov>.freeze, [">= 0.18"])
   s.add_development_dependency(%q<coveralls>.freeze, [">= 0"])
   s.add_development_dependency(%q<activesupport>.freeze, [">= 0"])
 end
