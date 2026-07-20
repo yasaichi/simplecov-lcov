@@ -46,6 +46,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = "3.7.1".freeze
   s.summary = "Custom SimpleCov formatter to generate a lcov style coverage.".freeze
 
+  s.add_development_dependency(%q<appraisal>.freeze, [">= 0"])
   s.add_development_dependency(%q<rspec>.freeze, [">= 0"])
   s.add_development_dependency(%q<rdoc>.freeze, [">= 0"])
   s.add_development_dependency(%q<bundler>.freeze, [">= 0"])
