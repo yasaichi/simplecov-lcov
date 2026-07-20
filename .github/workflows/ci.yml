@@ -10,7 +10,9 @@ jobs:
     strategy:
       matrix:
         ruby-version: ['3.2', '3.3', '3.4', 'head']
-
+        simplecov: [simplecov_0_x, simplecov_1_x]
+    env:
+      BUNDLE_GEMFILE: gemfiles/${{ matrix.simplecov }}.gemfile
     steps:
     - uses: actions/checkout@v4
 
@@ -20,11 +22,6 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
 
-    - name: Install dependencies
-      run: |
-        gem install bundler
-        bundle install
-
     - name: Run tests
       env:
         COVERAGE: true
@@ -32,7 +29,7 @@ jobs:
       run: bundle exec rspec
 
     - name: Upload coverage to Coveralls
-      if: matrix.ruby-version == '3.3'
+      if: matrix.ruby-version == '3.3' && matrix.simplecov == 'simplecov_1_x'
       uses: coverallsapp/github-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
