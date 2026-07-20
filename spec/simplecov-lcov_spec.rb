@@ -7,8 +7,12 @@ module SimpleCov::Formatter
     before do
       SimpleCov.clear_coverage_criteria
       SimpleCov.enable_coverage :branch if branch_coverage_enabled
+      # SimpleCov v1 may treat consecutive runs in the same second as concurrent,
+      # so disable merging to keep each example's coverage result isolated.
+      SimpleCov.merging false if SimpleCov.respond_to?(:merging)
+
       ENV['COVERAGE'] && SimpleCov.start do
-        add_filter '/.rvm/'
+        SimpleCov.public_send(SimpleCov.respond_to?(:skip) ? :skip : :add_filter, %r{/\.rvm/})
       end
 
       load 'fixtures/app/models/user.rb'
